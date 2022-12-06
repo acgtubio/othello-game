@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+  font-family: Karla;
+}
+
+body {
+  margin: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(8, 75px);
+  grid-template-rows: repeat(8, 75px);
+  /* background-color: #e5989b; */
+  background-color: #52796f;
+  border: 10px solid #E3BC9A;
+}
+
+.game-container {
+  display: flex;
+  /* border: 1px solid black; */
+  justify-content: center;
+  padding-block: 2rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  justify-content: center;
+  height: 2.7rem;
+  width: auto;
+  background-color: #C8A2C8;
+  padding-inline: 1.7rem;
+}
+
+.btn:hover{
+  cursor: pointer;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid black; */
+}
+
+.board-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.3px solid white;
+}
+
+.circle {
+  height: 45px;
+  width: 45px;
+  border-radius: 100%;
+}
+
+.black {
+  background-color: black;
+}
+
+.white {
+  background-color: white;
+}
+
+.avMoveW {
+  /* border: 1px solid white; */
+  background-color: white;
+  /* border: 2px solid black; */
+  opacity: 20%;
+}
+
+.avMoveB {
+  background-color: black;
+  /* border: 2px solid white; */
+  opacity: 20%;
+}
+
+.avMoveW:hover {
+  opacity: 1;
+}
+
+.avMoveB:hover{
+  opacity: 1;
+}
+
+.winner {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
