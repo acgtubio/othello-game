@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/othello-game/static/css/main.df03e7fa.css",
+    "main.js": "/othello-game/static/js/main.6883015b.js",
+    "index.html": "/othello-game/index.html",
+    "main.df03e7fa.css.map": "/othello-game/static/css/main.df03e7fa.css.map",
+    "main.6883015b.js.map": "/othello-game/static/js/main.6883015b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df03e7fa.css",
+    "static/js/main.6883015b.js"
+  ]
+}
