@@ -3,22 +3,53 @@ const down = new Set([56, 57, 58, 59, 60, 61, 62, 63]);
 const right = new Set([7, 15, 23, 31, 39, 47, 55, 63]);
 const left = new Set([0, 8, 16, 24, 32, 40, 48, 56]);
 
-export function move(board, player, i){
-    
-    // // console.log('buh')
+
+function findIndices(arr, val){
+    const indices = [];
+    var i = -1;
+
+    while((i=arr.indexOf(val, i+1)) != -1){
+        indices.push(i);
+    }
+    return [...indices]
+}
+
+function flipCoins(board, increment, index, target){
+    var i = index;
+    while(board[i] != target){
+        board[i] = target;
+        i += increment; 
+    }
+
+    return board;
+}
+
+function move2(board, player, i){
     const nBoard = [...board];
     
+    // s are middle coins
+    // t is the player's coin
+    const s = player ? 1 : 2;
+    const t = player ? 2 : 1;
+
+    nBoard[i] = t;
+}
+
+export function move(board, player, i){
+    const nBoard = [...board];
+    
+    // s are middle coins
+    // t is the player's coin
     const s = player ? 1 : 2;
     const t = player ? 2 : 1;
 
     nBoard[i] = t;
 
-    // // console.log('check right')
+    // convert coins directly to the right. 
     if(nBoard[i+1] == s && !right.has(i)){
         const toRight = RightSandwich(board, i + 1, t)
 
         if(toRight){
-            // // console.log('right')
             var patty = i + 1;
             while(board[patty] != t){
                 nBoard[patty] = t;
@@ -27,13 +58,11 @@ export function move(board, player, i){
         }
     }
 
-    // // console.log('check lefts')
+    // convert coins directly to the left.
     if(nBoard[i-1] == s && !left.has(i)){
         const toLeft = LeftSandwich(board, i - 1, t)
-        // // console.log(`left ${toLeft}`)
 
         if(toLeft){
-            // console.log('left')
             var patty = i - 1;
             while(board[patty] != t){
                 nBoard[patty] = t;
@@ -42,43 +71,36 @@ export function move(board, player, i){
         }
     }
 
-    // // console.log('check top')
+    // convert coins above
     if(nBoard[i-8] == s && !up.has(i)){
         const top = TopSandwich(board, i - 8, t)
-        // // console.log(`top ${top}`)
         if(top){
-            // console.log('top')
             var patty = i - 8;
             while(board[patty] != t){
-                // console.log(`top ${patty}`)
                 nBoard[patty] = t;
                 patty -= 8;
             }
         }
     }
 
-    // // console.log('check bot')
+    // convert coins down
     if(nBoard[i+8] == s && !down.has(i)){
         const bot = BottomSandwich(board, i + 8, t)
-        // // console.log(`bot ${bot}`)
 
         if(bot){
-            // // console.log('bottom')
             var patty = i + 8;
             while(board[patty] != t){
-                // // console.log(`bottom ${patty}`)
                 nBoard[patty] = t;
                 patty += 8;
             }
         }
     }
 
-    // console.log('check tr')
+    // convert coins to the top right.
     if(nBoard[i-7] == s && !up.has(i) && !right.has(i)){
         const tr = TopRightSandwich(board, i - 7, t)
 
         if(tr){
-            // console.log('top right')
             var patty = i - 7;
             while(board[patty] != t){
                 nBoard[patty] = t;
@@ -87,7 +109,7 @@ export function move(board, player, i){
         }
     }
 
-    // console.log('check tl')
+    // convert coins to the top left
     if(nBoard[i-9] == s && !up.has(i) && !left.has(i)){
         const tl = TopLeftSandwich(board, i - 9, t)
 
@@ -101,7 +123,7 @@ export function move(board, player, i){
         }
     }
 
-    // console.log('check bl')
+    // convert coins to the bottom left
     if(nBoard[i+7] == s && !down.has(i) && !left.has(i)){
         const tr = BottomLeftSandwich(board, i + 7, t)
 
@@ -115,12 +137,11 @@ export function move(board, player, i){
         }
     }
     
-    // console.log('check br')
-    if(nBoard[i+9] == s && !down.has(nBoard[i]) && !right.has(nBoard[i])){
+    // convert coins to the bottom right
+    if(nBoard[i+9] == s && !down.has(i) && !right.has(i)){
         const tl = BottomRightSandwich(board, i + 9, t)
 
         if(tl){
-            // console.log('bottm right')
             var patty = i + 9;
             while(board[patty] != t){
                 nBoard[patty] = t;
@@ -422,14 +443,4 @@ export function BottomRightSandwich(board, startIndex, target){
 
         i+=9;
     }
-}
-
-function findIndices(arr, val){
-    const indices = [];
-    var i = -1;
-
-    while((i=arr.indexOf(val, i+1)) != -1){
-        indices.push(i);
-    }
-    return [...indices]
 }

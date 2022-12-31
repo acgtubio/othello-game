@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from 'framer-motion';
 import { move, RightSandwich, LeftSandwich, TopSandwich, BottomSandwich, TopRightSandwich, BottomRightSandwich, BottomLeftSandwich, TopLeftSandwich } from "../utils/BoardUtils";
 
-export default function Tile({ boardState, setBoardState, player, setPlayer, nextMoves, i }){
+export default function Tile({ boardState, setBoardState, player, setPlayer, nextMoves, i, lastMove, setLastMove }){
     const up = new Set([0, 1, 2, 3, 4, 5, 6, 7]);
     const down = new Set([56, 57, 58, 59, 60, 61, 62, 63]);
     const right = new Set([7, 15, 23, 31, 39, 47, 55, 63]);
@@ -13,6 +13,7 @@ export default function Tile({ boardState, setBoardState, player, setPlayer, nex
             
             const nBoard = move(boardState, player, i);
 
+            setLastMove(i);
             setBoardState([...nBoard]);
             setPlayer(!player);
         }
@@ -20,12 +21,13 @@ export default function Tile({ boardState, setBoardState, player, setPlayer, nex
 
     const pTurn = player ? 'avMoveB' : 'avMoveW';
 
-    const tileColor = `circle ${ nextMoves.has(i) ? `${pTurn} ` : boardState[i] == 1 ? 'white' : boardState[i] == 2 ? 'black' : ''}`;
+    const tileColor = `circle ${ nextMoves.has(i) ? `${pTurn} ` : boardState[i] == 1 ? 'white' : boardState[i] == 2 ? 'black' : ''} ${i == lastMove ? 'lastMove' : ''}`;
     return (
-        
-        <div className="board-tile" onClick={() => { click() }}>
-            <div className={tileColor}>
+        <>
+            <div className="board-tile" onClick={() => { click() }}>
+                <div className={tileColor}>
+                </div>
             </div>
-        </div>
+        </>
     )
 }

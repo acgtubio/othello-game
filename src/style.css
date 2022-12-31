@@ -16,6 +16,15 @@ body {
   border: 10px solid #E3BC9A;
 }
 
+.prev-grid-container {
+  display: grid;
+  grid-template-columns: repeat(8, 75px);
+  grid-template-rows: repeat(8, 75px);
+  /* background-color: #e5989b; */
+  background-color: #52796f;
+  border: 10px solid #E3BC9A;
+}
+
 .game-container {
   display: flex;
   /* border: 1px solid black; */
@@ -54,7 +63,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 0.3px solid white;
+  border: 0.9px solid black;
 }
 
 .circle {
@@ -95,4 +104,12 @@ body {
 .winner {
   font-size: 2rem;
   margin-bottom: 2rem;
+}
+
+.lastMove {
+  border: 3px solid yellow;
+}
+
+.ind{
+  font-size: 5px;
 }

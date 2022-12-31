@@ -36,7 +36,7 @@ export function Minimax(board, depth, alpha, beta, maxPlayer){
             const ev = Minimax(child, depth-1, a2, b2, !maxPlayer);
             s = ev > s ? ev : s;
             a2 = ev > alpha ? ev : alpha;
-            // console.log(a2);
+            // console.log(`alpha2: ${a2}`);
 
             if(beta <= a2){
                 break;
@@ -51,8 +51,8 @@ export function Minimax(board, depth, alpha, beta, maxPlayer){
         for (const child of children){
             const ev = Minimax(child, depth-1, a2, b2, !maxPlayer);
             s = ev < s ? ev : s;
-            b2 = ev < alpha ? ev : alpha;
-
+            b2 = ev < beta ? ev : beta;
+            // console.log(`beta2: ${b2}`);
             if(b2 <= alpha){
                 break;
             }
